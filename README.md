@@ -2,6 +2,19 @@
 Pequeña aplicación de Angular con autenticación, CRUD de departamentos y CRUD de empleados, utilizando el siguiente proyecto backend: https://github.com/kgomez95/Nodejs-typescript-api-crud
 <br />
 
+# 0.- Pasos para hacer funcionar el proyecto
+<p>Para hacer funcionar este proyecto una vez descargado o clonado tienes que abrir una línea de comandos en la carpeta del proyecto (en mi caso dentro de la carpeta "app") y ejecutar el siguiente comando:</p>
+<ul>
+    <li><b><i>npm install</i></b></li>
+</ul>
+<p>* Este comando instalará las dependencias necesarias para ejecutar la aplicación (creará la carpeta "node_modules").</p>
+<p>Estas son las urls diponibles para probar actualmente:</p>
+<ul>
+    <li>http://localhost:4200/auth/login</li>
+    <li>http://localhost:4200/departments</li>
+</ul>
+<br />
+
 # 1.- Instalación del proyecto base
 <p>A continuación se detallan los pasos a seguir para instalar la base del proyecto Angular:</p>
 <ul>
