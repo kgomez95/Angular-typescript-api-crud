@@ -8,6 +8,7 @@ import { AppComponent } from '@app/app.component';
 // Importaciones de core.
 import { UnauthorizedLayoutComponent } from '@core/layouts/unauthorized/unauthorized-layout.component';
 import { AuthorizedLayoutComponent } from '@core/layouts/authorized/authorized-layout.component';
+import { AuthGuardService } from '@core/guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       {
         path: 'departments',
         component: AuthorizedLayoutComponent,
+        canActivate : [AuthGuardService],
         loadChildren: () => import('@app/departments/departments.module').then(m => m.DepartmentsModule)
       },
       {

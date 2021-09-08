@@ -1,3 +1,32 @@
-<div>
-    <p>Esto es el login.</p>
+<div class="align-login-card">
+    <div class="col col-12 col-md-6 col-lg-5 col-xl-4">
+        <div class="card">
+            <h2 class="card-header">Inicio de sesión</h2>
+            <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+                    <div class="mb-3">
+                        <label class="form-label" for="login_field_username">Nombre de usuario</label>
+                        <input id="login_field_username" class="form-control" type="text" formControlName="username"
+                            [ngClass]="{ 'is-invalid': isInvalidUsername() }" required />
+                        <div *ngIf="isInvalidUsername()" class="invalid-feedback">
+                            <div *ngIf="form.username.errors.required" class="justify-text">
+                                <span class="translation">Campo obligatorio.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="login_field_password">Contraseña</label>
+                        <input id="login_field_password" class="form-control" type="password" formControlName="password"
+                            [ngClass]="{ 'is-invalid': isInvalidPassword() }" required />
+                        <div *ngIf="isInvalidPassword()" class="invalid-feedback">
+                            <div *ngIf="form.password.errors.required" class="justify-text">
+                                <span class="translation">Campo obligatorio.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

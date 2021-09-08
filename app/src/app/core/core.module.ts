@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 // Importaciones de core.
 import { UnauthorizedLayoutComponent } from './layouts/unauthorized/unauthorized-layout.component';
 import { AuthorizedLayoutComponent } from './layouts/authorized/authorized-layout.component';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { AuthService } from './services/auth.service';
 
 // Importaciones de shared.
 import { SharedModule } from '@shared/shared.module';
@@ -22,6 +24,10 @@ import { SharedModule } from '@shared/shared.module';
     declarations: [
         AuthorizedLayoutComponent,
         UnauthorizedLayoutComponent,
+    ],
+    providers: [
+        AuthGuardService,
+        AuthService
     ],
     exports: []
 })
