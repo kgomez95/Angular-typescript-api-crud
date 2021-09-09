@@ -10,7 +10,7 @@
                             [ngClass]="{ 'is-invalid': isInvalidUsername() }" required />
                         <div *ngIf="isInvalidUsername()" class="invalid-feedback">
                             <div *ngIf="form.username.errors.required" class="justify-text">
-                                <span class="translation">Campo obligatorio.</span>
+                                <span>Campo obligatorio.</span>
                             </div>
                         </div>
                     </div>
@@ -20,11 +20,22 @@
                             [ngClass]="{ 'is-invalid': isInvalidPassword() }" required />
                         <div *ngIf="isInvalidPassword()" class="invalid-feedback">
                             <div *ngIf="form.password.errors.required" class="justify-text">
-                                <span class="translation">Campo obligatorio.</span>
+                                <span>Campo obligatorio.</span>
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+                    <div class="mb-3" *ngIf="errors.length > 0">
+                        <div *ngFor="let error of errors">
+                            <div class="justify-text text-danger">
+                                <small>[{{ error.code }}] - {{ error.message }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" [disabled]="sendingRequest">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                            [hidden]="!sendingRequest"></span>
+                        Iniciar sesión
+                    </button>
                 </form>
             </div>
         </div>

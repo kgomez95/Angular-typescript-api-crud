@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // Importaciones de core.
 import { UnauthorizedLayoutComponent } from './layouts/unauthorized/unauthorized-layout.component';
@@ -20,6 +21,7 @@ import { SharedModule } from '@shared/shared.module';
         ReactiveFormsModule,
         RouterModule,
         SharedModule,
+        HttpClientModule
     ],
     declarations: [
         AuthorizedLayoutComponent,

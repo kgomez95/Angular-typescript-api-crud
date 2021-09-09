@@ -1,7 +1,13 @@
 // Librerías.
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+
+// Importaciones de core.
+import { AuthService } from '@core/services/auth.service';
+import { ApiResponse } from '@core/models/api/api-response.model';
+import { ApiError } from '@core/models/api/api-error.model';
+import { Login } from '@core/models/login.model';
 
 @Component({
     selector: 'app-auth-login',
@@ -10,11 +16,14 @@ import { Title } from '@angular/platform-browser';
 export class LoginComponent implements OnInit {
 
     public loginForm: FormGroup;
+    public sendingRequest: boolean = false;
+    public errors: ApiError[] = [];
     private submitted: boolean = false;
 
     constructor(
         private titleService: Title,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private authService: AuthService
     ) {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
@@ -60,14 +69,29 @@ export class LoginComponent implements OnInit {
      */
     public doLogin(): void {
         this.submitted = true;
+        this.sendingRequest = true;
+        this.errors = [];
 
         if (!this.loginForm.invalid) {
+            this.authService.doLogin(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(
+                (response: ApiResponse<Login>) => {
+                    console.log(response);
 
-            // TODO: Llamar al servicio para hacer login.
+                    this.authService.setLogin(response.data);
+                    this.sendingRequest = false;
+                },
+                (error: any) => {
+                    console.error(error);
 
+                    if (error.error) this.errors = error.error.errors || [];
+                    console.log(this.errors);
+                    this.sendingRequest = false;
+                }
+            );
         }
-
-        console.log(this.loginForm);
+        else {
+            this.sendingRequest = false;
+        }
     }
 
 }
