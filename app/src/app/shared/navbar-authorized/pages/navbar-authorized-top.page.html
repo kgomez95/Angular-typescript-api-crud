@@ -1,3 +1,23 @@
-<nav>
-    <p>Esto es la navegación.</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="{{ env.routes.auth.login }}" routerLinkActive="active">App</a>
+        <button class="navbar-toggler" type="button" aria-controls="navbar-authorized_collapse" aria-expanded="false"
+            aria-label="Toggle navigation" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbar-authorized_collapse" class="collapse navbar-collapse" #collapse="ngbCollapse"
+            [(ngbCollapse)]="isCollapsed">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="{{ env.routes.departments.search }}" routerLinkActive="active">Departamentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="{{ env.routes.employees.search }}" routerLinkActive="active">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link c-pointer" (click)="logoff()">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>

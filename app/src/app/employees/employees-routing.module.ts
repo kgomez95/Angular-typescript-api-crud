@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// Importaciones de departments.
+// Importaciones de employees.
 import { SearchComponent } from './components/search.component';
 
 const routes: Routes = [
@@ -22,4 +22,4 @@ const routes: Routes = [
     ]
 })
 
-export class DepartmentsRoutingModule { }
+export class EmployeesRoutingModule { }

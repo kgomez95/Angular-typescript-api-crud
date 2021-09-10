@@ -18,7 +18,7 @@ export class AuthService {
     constructor(
         private httpClient: HttpClient
     ) {
-        // TODO: Comprobar datos de localStorage.
+        this.getLogin();
     }
 
     /**
@@ -55,9 +55,27 @@ export class AuthService {
      */
     public setLogin(login?: Login): void {
         this.login = login;
-        this.isAuthenticated = this.login !== undefined;
+        this._isAuthenticated = this.login !== undefined;
 
-        // TODO: Guardar y borrar datos del localStorage.
+        if (this._isAuthenticated)
+            localStorage.setItem(environment.localStorage.login, JSON.stringify(this.login));
+        else
+            localStorage.removeItem(environment.localStorage.login);
+    }
+
+    /**
+     * @name getLogin
+     * @description Si no hay login lo busca en el localStorage para intentar cargarlo.
+     * @returns Retorna el login o undefined.
+     */
+    public getLogin(): Login | undefined {
+        if (!this.login) {
+            let loginValue = localStorage.getItem(environment.localStorage.login);
+            if (loginValue) {
+                this.setLogin(JSON.parse(loginValue));
+            }
+        }
+        return this.login;
     }
 
     /**
@@ -65,6 +83,7 @@ export class AuthService {
      * @description Indica si el usuario está autenticado o no.
      */
     public get isAuthenticated(): boolean {
+        this.getLogin();
         return this._isAuthenticated;
     }
 

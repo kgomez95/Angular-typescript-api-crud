@@ -2,12 +2,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 // Importaciones de core.
 import { AuthService } from '@core/services/auth.service';
 import { ApiResponse } from '@core/models/api/api-response.model';
 import { ApiError } from '@core/models/api/api-error.model';
 import { Login } from '@core/models/login.model';
+
+// Importaciones de environments:
+import { environment } from '@environments/environment';
 
 @Component({
     selector: 'app-auth-login',
@@ -23,12 +27,18 @@ export class LoginComponent implements OnInit {
     constructor(
         private titleService: Title,
         private formBuilder: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', [Validators.required]]
         });
+
+        if (this.authService.getLogin()) {
+            // Redirigimos a la página de departments.
+            this.router.navigate([environment.routes.departments.search]);
+        }
     }
 
     ngOnInit(): void {
@@ -75,16 +85,21 @@ export class LoginComponent implements OnInit {
         if (!this.loginForm.invalid) {
             this.authService.doLogin(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(
                 (response: ApiResponse<Login>) => {
-                    console.log(response);
-
+                    // Almacena el login en el localStorage.
                     this.authService.setLogin(response.data);
                     this.sendingRequest = false;
+
+                    // Redirigimos a la página de departments.
+                    this.router.navigate([environment.routes.departments.search]);
                 },
                 (error: any) => {
                     console.error(error);
 
-                    if (error.error) this.errors = error.error.errors || [];
-                    console.log(this.errors);
+                    if (error.error && error.error.errors) this.errors = error.error.errors || [];
+                    else this.errors = [{
+                        code: 'UNKNOW',
+                        message: error.message
+                    }];
                     this.sendingRequest = false;
                 }
             );

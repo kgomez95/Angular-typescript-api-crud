@@ -27,6 +27,12 @@ const routes: Routes = [
         loadChildren: () => import('@app/departments/departments.module').then(m => m.DepartmentsModule)
       },
       {
+        path: 'employees',
+        component: AuthorizedLayoutComponent,
+        canActivate : [AuthGuardService],
+        loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
+      },
+      {
         path: '',
         redirectTo: 'auth',
         pathMatch: 'full'
