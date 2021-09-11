@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   api: {
     baseUrl: 'http://localhost:5000',
-    loginAction: '/api/auth/login'
+    loginAction: '/api/auth/login',
+    getDepartments: '/api/departments/getDepartments'
   },
   localStorage: {
     login: 'AngularTypescriptApiCrud_login'

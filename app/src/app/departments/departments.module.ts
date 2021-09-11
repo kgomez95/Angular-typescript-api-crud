@@ -6,6 +6,10 @@ import { CommonModule } from '@angular/common';
 // Importaciones de departments.
 import { DepartmentsRoutingModule } from './departments-routing.module';
 import { SearchComponent } from './components/search.component';
+import { SearchService } from './services/search.service';
+
+// Importaciones de shared.
+import { DataTablesModule } from '@shared/datatables/datatables.module';
 
 @NgModule({
     imports: [
@@ -13,9 +17,13 @@ import { SearchComponent } from './components/search.component';
         FormsModule,
         ReactiveFormsModule,
         DepartmentsRoutingModule,
+        DataTablesModule
     ],
     declarations: [
         SearchComponent,
+    ],
+    providers: [
+        SearchService
     ]
 })
 

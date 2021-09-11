@@ -95,7 +95,4 @@ export class AuthService {
         this._isAuthenticated = _isAuthenticated;
     }
 
-    // TODO: Crear un interceptor de llamadas para indicar el token bearer en la petición.
-    // TODO: Crear un interceptor de respuestas de error 403 para saber si se ha caducado el token para enviar al usuario al login.
-
 }

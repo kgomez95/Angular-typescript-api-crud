@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Importaciones de shared.
 import { NavbarAuthorizedModule } from '@shared/navbar-authorized/navbar-authorized.module';
+import { DataTablesModule } from '@shared/datatables/datatables.module';
 
 @NgModule({
     imports: [
@@ -13,10 +14,12 @@ import { NavbarAuthorizedModule } from '@shared/navbar-authorized/navbar-authori
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        NavbarAuthorizedModule
+        NavbarAuthorizedModule,
+        DataTablesModule
     ],
     exports: [
-        NavbarAuthorizedModule
+        NavbarAuthorizedModule,
+        DataTablesModule
     ]
 })
 export class SharedModule { }
