@@ -1,5 +1,6 @@
 // Librerías.
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export abstract class DataTableService {
@@ -23,4 +24,25 @@ export abstract class DataTableService {
      * @returns Retorna los filtros para mostrar en la tabla.
      */
     public abstract recoverFilters(): any;
+
+    /**
+     * @name openRecord
+     * @description Abre la pantalla para visualizar el registro seleccionado.
+     * @param id - Identificador del registro a visualizar.
+     */
+    public abstract openRecord(id: number): void;
+
+    /**
+     * @name openUpdateView
+     * @description Abre la pantalla para actualizar el elemento seleccionado.
+     * @param id - Identificador del registro a actualizar.
+     */
+    public abstract openUpdateView(id: number): void;
+
+    /**
+     * @name deleteRecord
+     * @description Elimina el registro seleccionado.
+     * @param id - Identificador del registro a borrar.
+     */
+    public abstract deleteRecord(id: number): Observable<any>;
 }

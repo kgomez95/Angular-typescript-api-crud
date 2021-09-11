@@ -1,6 +1,7 @@
 // Librerías.
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 // Importaciones de core.
 import { DataTableService } from '@core/services/datatables.service';
@@ -77,7 +78,8 @@ export class SearchService implements DataTableService {
             'Nombre',
             'Descripción',
             'Fecha de creación',
-            'Fecha de modificación'
+            'Fecha de modificación',
+            ''
         ];
     }
 
@@ -96,5 +98,32 @@ export class SearchService implements DataTableService {
             updated_at_from: '',
             updated_at_to: ''
         };
+    }
+
+    /**
+     * @name openRecord
+     * @description Abre la pantalla para visualizar el registro seleccionado.
+     * @param id - Identificador del registro a visualizar.
+     */
+    public openRecord(id: number): void {
+        throw new Error('Method not implemented.');
+    }
+
+    /**
+     * @name openUpdateView
+     * @description Abre la pantalla para actualizar el elemento seleccionado.
+     * @param id - Identificador del registro a actualizar.
+     */
+    public openUpdateView(id: number): void {
+        throw new Error('Method not implemented.');
+    }
+
+    /**
+     * @name deleteRecord
+     * @description Elimina el registro seleccionado.
+     * @param id - Identificador del registro a borrar.
+     */
+    public deleteRecord(id: number): Observable<any> {
+        throw new Error('Method not implemented.');
     }
 }

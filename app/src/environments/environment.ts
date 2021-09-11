@@ -17,10 +17,12 @@ export const environment = {
       login: '/auth/login'
     },
     departments: {
-      search: '/departments'
+      search: '/departments',
+      create: '/departments/create'
     },
     employees: {
-      search: '/employees'
+      search: '/employees',
+      create: '/employees/create'
     }
   }
 };
