@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 // Importaciones de departments.
 import { DepartmentsRoutingModule } from './departments-routing.module';
 import { SearchComponent } from './components/search.component';
+import { CreateComponent } from './components/create.component';
 import { SearchService } from './services/search.service';
 
 // Importaciones de shared.
@@ -21,6 +22,7 @@ import { DataTablesModule } from '@shared/datatables/datatables.module';
     ],
     declarations: [
         SearchComponent,
+        CreateComponent
     ],
     providers: [
         SearchService

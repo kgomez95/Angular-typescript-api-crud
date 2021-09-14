@@ -26,6 +26,12 @@ export abstract class DataTableService {
     public abstract recoverFilters(): any;
 
     /**
+     * @name createRecord
+     * @description Abre la pantalla para crear un registro.
+     */
+    public abstract createRecord(): void;
+
+    /**
      * @name openRecord
      * @description Abre la pantalla para visualizar el registro seleccionado.
      * @param id - Identificador del registro a visualizar.

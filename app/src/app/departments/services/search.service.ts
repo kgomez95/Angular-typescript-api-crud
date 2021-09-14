@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 // Importaciones de core.
 import { DataTableService } from '@core/services/datatables.service';
@@ -14,7 +15,8 @@ import { environment } from '@environments/environment';
 @Injectable()
 export class SearchService implements DataTableService {
     constructor(
-        private httpClient: HttpClient
+        private httpClient: HttpClient,
+        private router: Router
     ) { }
 
     /**
@@ -41,7 +43,7 @@ export class SearchService implements DataTableService {
                 }).subscribe(
                     (response: ApiResponse<Department[]>) => {
                         let departments: any[] = [];
-                        if (response.data) {
+                        if (response && response.data) {
                             response.data.forEach(department => {
                                 departments.push([
                                     department.id,
@@ -98,6 +100,14 @@ export class SearchService implements DataTableService {
             updated_at_from: '',
             updated_at_to: ''
         };
+    }
+
+    /**
+     * @name createRecord
+     * @description Abre la pantalla para crear un registro.
+     */
+    public createRecord(): void {
+        this.router.navigate([environment.routes.departments.create]);
     }
 
     /**

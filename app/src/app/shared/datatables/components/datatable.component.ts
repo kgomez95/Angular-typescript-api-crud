@@ -11,17 +11,33 @@ import { DataTableService } from '@core/services/datatables.service';
 export class DataTableComponent implements OnInit {
 
     @Input() service?: DataTableService;
-    @Input() createRoute: string = '';
     public headers: string[] = [];
+    public filters: any;
     public records: any[] = [];
 
     // TODO: Desarrollar el componente.
+    // TODO: Hacer que los filtros estén ocultos por defecto y poder mostrarlos y ocultarlos mediante un botón.
 
     constructor() { }
 
     ngOnInit(): void {
         this.recoverHeaders();
+        this.recoverFilters();
         this.recoverData();
+    }
+
+    /**
+     * @name changeFilter
+     * @description Cambia el valor del filtro proporcionado.
+     * @param key - Clave del filtro a cambiar.
+     * @param event - Evento para coger el valor del filtro modificado.
+     */
+    public changeFilter(key: any, event: any): void {
+        try {
+            this.filters[key] = event.target.value;
+        } catch (ex) {
+            console.error(ex);
+        }
     }
 
     /**
@@ -42,8 +58,34 @@ export class DataTableComponent implements OnInit {
      * @description Recupera los datos del servicio.
      */
     public async recoverData(): Promise<any> {
-        this.records = await this.service?.recoverData({});
+        this.records = await this.service?.recoverData(this.filters);
         console.log(this.records);
+    }
+
+    /**
+     * @name recoverFilters
+     * @description Recupera los filtros de la tabla.
+     */
+    public recoverFilters(): void {
+        if (this.service) {
+            this.filters = this.service.recoverFilters();
+        }
+        else {
+            console.error('recoverFilters -> No hay servicio para recoger los filtros.');
+        }
+    }
+
+    /**
+     * @name createRecord
+     * @description Abre la pantalla para crear un registro.
+     */
+    public createRecord(): void {
+        if (this.service) {
+            this.service.createRecord();
+        }
+        else {
+            console.error('createRecord -> No hay servicio para ir a la pantalla de creación.');
+        }
     }
 
     /**
@@ -53,6 +95,7 @@ export class DataTableComponent implements OnInit {
      */
     public openRecord(id: number): void {
         console.log(id);
+        console.log(this.filters);
     }
 
     /**
