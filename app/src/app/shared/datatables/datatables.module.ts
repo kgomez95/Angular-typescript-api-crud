@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Importaciones de navbar-authorized.
 import { DataTableComponent } from './components/datatable.component';
@@ -12,7 +13,8 @@ import { DataTableComponent } from './components/datatable.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        NgbCollapseModule
     ],
     declarations: [
         DataTableComponent

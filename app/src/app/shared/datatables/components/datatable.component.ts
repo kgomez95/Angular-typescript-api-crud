@@ -14,9 +14,9 @@ export class DataTableComponent implements OnInit {
     public headers: string[] = [];
     public filters: any;
     public records: any[] = [];
+    public collapsedFilters = true;
 
     // TODO: Desarrollar el componente.
-    // TODO: Hacer que los filtros estén ocultos por defecto y poder mostrarlos y ocultarlos mediante un botón.
 
     constructor() { }
 
